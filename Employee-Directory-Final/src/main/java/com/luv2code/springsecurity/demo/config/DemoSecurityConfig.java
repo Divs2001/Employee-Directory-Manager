@@ -32,13 +32,18 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-			.antMatchers("/employees/list").hasRole("EMPLOYEE")
-			.antMatchers("/employees/showFormForAdd").hasRole("MANAGER")
-			.antMatchers("/leaders/**").hasRole("MANAGER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
+			
+//			.antMatchers("/employees/list").hasRole("EMPLOYEE")
+//			.antMatchers("/employees/showFormForAdd").hasRole("MANAGER")
+			.antMatchers("/").permitAll()//allow public access to landing page
+			.antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
+			.antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
+			.antMatchers("/employees/delete").hasRole("ADMIN")
+			.antMatchers("/employees/**").hasRole("EMPLOYEE")
+			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
-				.loginPage("/showMyLoginPage")
+				.loginPage("/showMyLoginForm")
 				.loginProcessingUrl("/authenticateTheUser")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()

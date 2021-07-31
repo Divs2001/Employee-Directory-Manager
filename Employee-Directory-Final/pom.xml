@@ -10,10 +10,11 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.luv2code.springsecurity</groupId>
-	<artifactId>spring-security-custom-user-registration-demo-thymeleaf-spring-boot</artifactId>
+	<artifactId>Employee-Directory-Manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-security-custom-user-registration-demo-thymeleaf-spring-boot</name>
+	<name>Employee-Directory-Manager</name>
 	<description>Spring Security and Thymeleaf project for Spring Boot</description>
+	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -63,6 +64,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- to compensate for java 9 not including jaxb -->
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -75,7 +82,7 @@
 				<!-- Add Maven coordinates (GAV) for: maven-war-plugin -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.0</version><!--$NO-MVN-MAN-VER$-->
+				<version>3.2.0</version>
 			</plugin>
 
 	 
